@@ -1000,7 +1000,7 @@ class Shiva {
     ctx.beginPath(); ctx.moveTo(tx2,ty+82); ctx.lineTo(tx2,ty); ctx.stroke();
     // prongs
     ctx.lineWidth=3;
-    [[0,-30],[−12,-8,−10,-34],[12,-8,10,-34]].forEach(([dx,dy,ex,ey])=>{
+    [[0,-30],[-12,-8,-10,-34],[12,-8,10,-34]].forEach(([dx,dy,ex,ey])=>{
       if(ex===undefined){ ctx.beginPath(); ctx.moveTo(tx2,ty); ctx.lineTo(tx2+dx,ty+dy); ctx.stroke(); }
       else { ctx.beginPath(); ctx.moveTo(tx2+dx,ty+dy); ctx.lineTo(tx2+ex,ty+ey); ctx.stroke(); }
     });
@@ -1094,9 +1094,9 @@ class Background {
 
     // stars
     this.stars.forEach(s=>{
-      const tw=0.4+0.6*Math.sin(t*s.speed+s.phase);
-      ctx.beginPath(); ctx.arc(s.x,s.y,s.r*tw,0,Math.PI*2);
-      ctx.fillStyle=`rgba(255,255,255,${tw*.85})`; ctx.fill();
+      const tw=0.5+0.5*Math.sin(t*s.speed+s.phase); // 0..1, always non-negative
+      ctx.beginPath(); ctx.arc(s.x,s.y,s.r*(0.4+0.6*tw),0,Math.PI*2);
+      ctx.fillStyle=`rgba(255,255,255,${0.3+0.6*tw})`; ctx.fill();
     });
 
     // moon
